@@ -27,8 +27,8 @@ Page({
               }
               else {
               this.setData({
-                  userName: app.globalData.userName,
-                  userPhone: '1008612',
+                  nickName: app.globalData.nickName,
+                userPhone: app.globalData.userPhone,
                   userHead: '../../resources/images/tou.png',
                   is_login:'已登陆',
                   operation: '退出',

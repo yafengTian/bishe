@@ -2,7 +2,6 @@
   "pages": [
     "pages/home/home",
     "pages/personal/personal",
-    "pages/find/find",
     "pages/login/login",
     "pages/detail/detail",
     "pages/register/register",
@@ -10,7 +9,8 @@
     "pages/authorize/authorize",
     "pages/test/test",
     "pages/pay/pay",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -29,6 +29,12 @@
         "pagePath": "pages/home/home",
         "iconPath": "resources/images/back_home.png",
         "selectedIconPath": "resources/images/back_to_home.png"
+      },
+      {
+        "text": "订单",
+        "pagePath": "pages/list/list",
+        "iconPath": "resources/images/edit_un.png",
+        "selectedIconPath": "resources/images/edit_in.png"
       },
       {
         "text": "我的",

@@ -88,9 +88,9 @@ Page({
     }
   },
   // 跳到购物车
-  toCar() {
+  mylist() {
     wx.switchTab({
-      url: '/pages/cart/cart'
+      url: '/pages/list/list'
     })
   },
   // 立即购买
@@ -99,7 +99,7 @@ Page({
     //{
     var tId = this.data.ticketId;
         wx.showModal({
-          title: '确定购买？',
+          title: '确定去下单？',
           content: '',
           showCancel: true,
           cancelText: '取消',

@@ -25,7 +25,7 @@ swiper-item image {
 }
 .detail .price {
   color: red;
-  font-size: 40rpx;
+  font-size: 35rpx;
   margin: 10rpx;
 }
 .line_flag {
@@ -38,7 +38,7 @@ swiper-item image {
 }
 .line {
   width: 100%;
-  height: 2rpx;
+  height: 6rpx;
   display: inline-block;
   margin: 20rpx 0rpx;
   background-color: gainsboro;
@@ -58,10 +58,10 @@ swiper-item image {
   height: 100rpx;
 }
 .button-green {
-  background-color: #FFD700; /* Green */
+  background-color: #00FF33; /* Green */
 }
 .button-red {
-  background-color: #f44336; /* 红色 */
+  background-color:#FFD700; /* 红色 */
 }
 .image_detail {
   width: 100%;
@@ -110,4 +110,10 @@ text {
   border: 10rpx;
   border-block-start-color: red;
   border-block-end-color: blue;
+}
+.center{
+  text-align: center;
+}
+.content{
+  font-size: 30rpx;
 }

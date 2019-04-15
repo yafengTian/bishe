@@ -44,7 +44,8 @@ Page({
           //更新用户登陆状态
           app.globalData.flag=res.data.id;
           //获取用户信息
-          app.globalData.userName=res.data.userName;
+          app.globalData.nickName=res.data.nickName;
+          app.globalData.userPhone = res.data.phoneNumber;
           wx.showToast({
             title: '登陆成功',
             icon: 'success',

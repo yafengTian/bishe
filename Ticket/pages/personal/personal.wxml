@@ -2,7 +2,7 @@
     <view class="personalMe" >
         <image src="{{userHead}}" style="width:68px;height:68px;border:1px solid #ddd;float:left;margin:20rpx 20rpx;border-radius: 50%;"></image>
         <view class="personalInfo">
-            <text>姓名:{{userName}}</text>
+            <text>昵称:{{nickName}}</text>
             <text>电话: {{userPhone}}</text>
             <text style='color:blue;'>登陆状态: {{is_login}}</text>
         </view>

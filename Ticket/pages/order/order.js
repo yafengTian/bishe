@@ -6,7 +6,7 @@ Page({
     canvasHidden: false,
     maskHidden: true,
     imagePath: '',
-    placeholder:'hello'//默认二维码生成文本
+    placeholder:'error'//默认二维码生成文本,error表示该用户还没有买票
   },
   onLoad: function (options) {
     console.log(options);

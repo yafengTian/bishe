@@ -170,3 +170,6 @@ text {
 .input_control { 
   position: relative; left: -300rpx; bottom: 0; width: 100rpx; height: 100rpx;
 }
+.price{
+  color: red;
+}
