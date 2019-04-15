@@ -91,18 +91,24 @@ Page( {
     var that = this;
     wx.request({
       url: 'http://localhost:8080/BiShe/image',
-      data: '',
       method: 'GET',
       dataType: 'json',
       responseType: 'text',
       success: function (res) {
-        console.log(res.data);
-        that.setData({
-         // imgUrls: res.data.ticketImages
-          goodsList:res.data
-        })
-        console.log(that.data.goodsList);
+          console.log(res.data);
+          that.setData({
+            // imgUrls: res.data.ticketImages
+            goodsList: res.data,
+          })
+          console.log(that.data.goodsList);
       },
+      fail:function(res){
+        wx.showToast({
+          title: 'internet error',
+          icon: 'loading',
+          duration: 2000,
+        })
+      }
     })
 
   },
