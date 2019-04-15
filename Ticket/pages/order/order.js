@@ -1,19 +1,22 @@
 // pages/main/index.js
 var QR = require("../../utils/qrcode.js");
+const app=getApp();
 Page({
   data: {
     canvasHidden: false,
     maskHidden: true,
     imagePath: '',
-    placeholder: 'http://wxapp-union.com'//默认二维码生成文本
+    placeholder:'hello'//默认二维码生成文本
   },
   onLoad: function (options) {
+    console.log(options);
+    this.setData({
+      placeholder: app.globalData.openid +'+'+ options.number
+    })
     // 页面初始化 options为页面跳转所带来的参数
     var size = this.setCanvasSize();//动态设置画布大小
     var initUrl = this.data.placeholder;
     this.createQrCode(initUrl, "mycanvas", size.w, size.h);
-
-
   },
   onReady: function () {
 

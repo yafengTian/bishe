@@ -30,5 +30,6 @@ App({
     userName: '无',
     userPhone: '13701006491',
     home_images:'"http://localhost:8080/homeImage/"',
+    openid:''
   }
 })

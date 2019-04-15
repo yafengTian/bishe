@@ -48,10 +48,12 @@ Page({
           wx.showToast({
             title: '登陆成功',
             icon: 'success',
-            duration: 2000
-          }),
-          wx.switchTab({
-            url: '../home/home'
+            duration: 2000,
+            success:function(){
+              wx.switchTab({
+                url: '../home/home'
+              })
+            }
           })
         }
         else

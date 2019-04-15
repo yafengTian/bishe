@@ -1,0 +1,13 @@
+<!--pages/main/index.wxml-->
+<view class="container-box">
+    <view class="img-box">
+        <image bindtap="previewImg" mode="scaleToFill" src="{{imagePath}}"></image>
+    </view>
+<view class='border'></view>
+<text>恭喜您！已经成功购买景区门票，凭此二维码扫码进入景区。欢迎您的光临！</text>
+<view class='border'></view>
+</view>
+<view hidden="{{maskHidden}}" class="mask"></view>
+<view class="canvas-box">
+  <canvas  hidden="{{canvasHidden}}" style="width: 686rpx;height: 686rpx;background:#f1f1f1;" canvas-id="mycanvas"/>
+</view>

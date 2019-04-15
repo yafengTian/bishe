@@ -8,7 +8,9 @@
     "pages/register/register",
     "pages/index/index",
     "pages/authorize/authorize",
-    "pages/test/test"
+    "pages/test/test",
+    "pages/pay/pay",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",

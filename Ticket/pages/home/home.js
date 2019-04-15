@@ -54,6 +54,23 @@ Page( {
         me.setData( { windowWidth: res.windowWidth })
       }
     });
+    wx.login({
+      success: function(res) {
+        wx.request({
+          url: 'http://localhost:8080/BiShe/is_login',
+          data: {
+            'operFlag': "getOpenid",
+             code:res.code
+          },
+          method: 'GET',
+          dataType: 'json',
+          responseType: 'text',
+          success: function(res) {
+            app.globalData.openid = res.data.openid;
+          }
+        })
+      },
+    })
     console.log( 'onLoad' );
   },
   startNotice: function() {
@@ -104,7 +121,7 @@ Page( {
       },
       fail:function(res){
         wx.showToast({
-          title: 'internet error',
+          title: '网络连接错误',
           icon: 'loading',
           duration: 2000,
         })

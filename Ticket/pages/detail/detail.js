@@ -95,15 +95,28 @@ Page({
   },
   // 立即购买
   immeBuy() {
-    if(app.globalData.flag==1)
-    {
-    wx.showToast({
-      title: '购买成功',
-      icon: 'success',
-      duration: 4000
-    });
-    }
-    else
+    //if(app.globalData.flag==1)//已经登陆，可以下单
+    //{
+    var tId = this.data.ticketId;
+        wx.showModal({
+          title: '确定购买？',
+          content: '',
+          showCancel: true,
+          cancelText: '取消',
+          cancelColor: '',
+          confirmText: '确认',
+          confirmColor: 'green',
+          success: function(res) {
+            if(res.confirm)
+            {
+              wx.redirectTo({
+                url: '../pay/pay?tId='+tId,
+              })
+            }
+          },
+        })
+   // }
+   /* else//未登录必须先登陆
     {
       wx.showToast({
         title: '请先登陆',
@@ -115,6 +128,6 @@ Page({
           })
          },
       });
-    }
+    }*/
   }
 })
