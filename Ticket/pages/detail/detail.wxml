@@ -8,17 +8,13 @@
 </swiper>
 <scroll-view scroll-y="true">
   <view class="detail">
-    <text class="title">LANCOME兰蔻小黑瓶精华肌底液</text>
-    <text class="price">￥500</text>
-  </view>
-  <view class="separate"></view>
-  <!-- sku选择 -->
-  <text bindtap="toggleDialog">请选择购买数量</text>
-  <view style='height:3rpx;color:red;'></view>
-  <text>商品评价</text>
-  <text class="text-remark">东西还可以，好评~</text>
-  <view class="separate"></view>
+  <block wx:for="{{details}}">
+  <text class="price">原价￥200元 现在只要￥{{item.price}}元</text>
+   <text class="title">{{item.descration}}</text>
   <text>景区详情</text>
+  <text>{{item.introducation}}</text>
+  </block>
+  </view>
   <block wx:for-items="{{detailImg}}" wx:key="name">
     <image class="image_detail" src="{{item}}" />
   </block>

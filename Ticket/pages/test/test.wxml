@@ -1,2 +1,5 @@
-<!--pages/test/test.wxml-->
-<text>pages/test/test.wxml</text>
+<view>
+<block wx:for="{{imgs}}">
+<image src="{{item.imagesUrl}}"></image>
+</block>
+</view>

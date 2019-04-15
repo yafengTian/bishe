@@ -2,7 +2,7 @@ const app=getApp();
 Page({
   data: {
     isLike: true,
-    flag:1,
+    details:[],
     // banner
     imgUrls: [
       "../../resources/images/1.jpg",
@@ -25,6 +25,38 @@ Page({
       "../../resources/images/2.jpg",
       "../../resources/images/4.jpg",
     ],
+  },
+  //生命周期函数
+  onLoad:function(event){
+  this.setData({
+    ticketId: event.ticket_id
+  })
+  },
+  onShow:function(event){
+    var td = this.data.ticketId;
+    var that = this;
+    console.log(td);
+    wx.showToast({
+      title: '加载中',
+      icon: 'loading',
+      duration: 1000,
+    }),
+      wx.request({
+        url: 'http://localhost:8080/BiShe/detail',
+        data: {
+          tId: td
+        },
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            details:res.data
+          })
+          console.log(that.data.details);
+        },
+      })
   },
   //预览图片
   previewImage: function (e) {
@@ -68,7 +100,7 @@ Page({
     wx.showToast({
       title: '购买成功',
       icon: 'success',
-      duration: 2000
+      duration: 4000
     });
     }
     else
@@ -76,11 +108,13 @@ Page({
       wx.showToast({
         title: '请先登陆',
         icon: 'success',
-        duration: 3000
+        duration: 3000,
+        success: function (res) {
+          wx.navigateTo({
+            url: '../login/login',
+          })
+         },
       });
-      wx.navigateTo({
-        url: '../login/login',
-      })
     }
-  },
+  }
 })

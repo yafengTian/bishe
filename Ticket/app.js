@@ -29,5 +29,6 @@ App({
     flag:'0',//用户的登陆状态，flag=1表示已登陆，0表示未登录
     userName: '无',
     userPhone: '13701006491',
+    home_images:'"http://localhost:8080/homeImage/"',
   }
 })
