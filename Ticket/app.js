@@ -28,8 +28,9 @@ App({
     userInfo:null,
     flag:'0',//用户的登陆状态，flag=1表示已登陆，0表示未登录
     nickName: '无',
-    userPhone: '110',
-    home_images:'"http://localhost:8080/homeImage/"',
+    city: '无',
+    urlPath:'http://localhost:8080/BiShe/',
+    //urlPath:'http://154.8.136.60:8080/BiShe/',
     openid:''
   }
 })

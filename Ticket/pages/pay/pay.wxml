@@ -26,7 +26,6 @@
           <view class="line_nav"></view>
           <text class='price'>共{{number}}张，合计{{number*item.price}}元</text>
           <button class="button-red" bindtap="showInputLayer" formType="submit">立即支付</button>
-        </view>
         <view wx:if='{{showPayPwdInput}}'>
           <view class='bg_layer'></view>
           <view class='input_main'>
@@ -37,7 +36,7 @@
               <text>输入支付密码</text>
             </view>
             <view class='input_tip'>
-              <text>应付款：100元</text>
+              <text>应付款：{{number*item.price}}元</text>
             </view>
             <view class='input_row' catchtap='getFocus'>
               <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
@@ -51,4 +50,5 @@
       </view>
     </view>
   </view>
+</view>
 </view>

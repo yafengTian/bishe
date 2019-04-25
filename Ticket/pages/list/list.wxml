@@ -1,2 +1,25 @@
-<!--pages/list/list.wxml-->
-<text>pages/list/list.wxml</text>
+<!-- 已使用 -->
+    <scroll-view class="hot-box" scroll-y="true">
+      <view  class="orderDetails" wx:for="{{orders}}" wx:key=" ">
+        <view class="orderListTitle">
+          <text class="userName">{{item.ticketName}}</text>
+          <view class="orderStatus" catchtap='cancle_collect' data-id='{{item.id}}'>{{item.status}}</view>
+        </view>
+       <navigator class="btn" url="../detail/detail?ticket_id={{item.tId}}">
+        <view class="orderListDetails">
+          <view class="productImg">
+            <image src="{{item.image}}" background-size="cover"></image>
+          </view>
+          <view class="productInfo">
+            <view class="productTitle">{{item.descration}}</view>
+            <text class="productPrice">票价：￥{{item.price}}/人 {{item.count}}张</text>
+          </view>
+        </view>
+        </navigator>
+        <view class="productCount">
+          <view>
+            <text class='userName'>合计:￥{{item.money}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>

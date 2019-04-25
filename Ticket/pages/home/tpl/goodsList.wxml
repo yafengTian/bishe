@@ -9,7 +9,7 @@
                 </view>
             </view>
             <view class="operating">
-                <view class="tips"><span>价格：{{goods.price}}元</span></view>
+                <view class="tips"><span>票价{{goods.price}}元</span></view>
                 <navigator class="btn" url="../detail/detail?ticket_id={{goods.id}}">详情</navigator>
             </view>
         </view>

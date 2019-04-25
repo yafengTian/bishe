@@ -1,106 +1,178 @@
-// pages/main/index.js
-var QR = require("../../utils/qrcode.js");
+//index.js
+//获取应用实例
+const app = getApp()
+
 Page({
   data: {
-    canvasHidden: false,
-    maskHidden: true,
-    imagePath: '',
-    placeholder: 'http://wxapp-union.com'//默认二维码生成文本
+    isLike: true,
+    details: [],
+    addcar: true,
+    tabCurrent: 0,
+    chooseType: 0,
+    chooseType1: 0,
+    fonts:'',
+    imgUrls: [
+      "../../resources/images/1.jpg",
+      "../../resources/images/2.jpg",
+      "../../resources/images/1.jpg",
+      "../../resources/images/3.jpg",
+      "../../resources/images/4.jpg"
+    ],
+    indicatorDots: true, //是否显示面板指示点
+    autoplay: true, //是否自动切换
+    interval: 3000, //自动切换时间间隔,3s
+    duration: 1000, //  滑动动画时长1s
   },
-  onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    var size = this.setCanvasSize();//动态设置画布大小
-    var initUrl = this.data.placeholder;
-    this.createQrCode(initUrl, "mycanvas", size.w, size.h);
-
-
-  },
-  onReady: function () {
-
-  },
-  onShow: function () {
-
-    // 页面显示
-  },
-  onHide: function () {
-    // 页面隐藏
-  },
-
-  onUnload: function () {
-    // 页面关闭
-
-  },
-  //适配不同屏幕大小的canvas
-  setCanvasSize: function () {
-    var size = {};
-    try {
-      var res = wx.getSystemInfoSync();
-      var scale = 750 / 686;//不同屏幕下canvas的适配比例；设计稿是750宽
-      var width = res.windowWidth / scale;
-      var height = width;//canvas画布为正方形
-      size.w = width;
-      size.h = height;
-    } catch (e) {
-      // Do something when catch error
-      console.log("获取设备信息失败" + e);
-    }
-    return size;
-  },
-  createQrCode: function (url, canvasId, cavW, cavH) {
-    //调用插件中的draw方法，绘制二维码图片
-    QR.api.draw(url, canvasId, cavW, cavH);
-    setTimeout(() => { this.canvasToTempImage(); }, 1000);
-
-  },
-  //获取临时缓存照片路径，存入data中
-  canvasToTempImage: function () {
-    var that = this;
-    wx.canvasToTempFilePath({
-      canvasId: 'mycanvas',
-      success: function (res) {
-        var tempFilePath = res.tempFilePath;
-        console.log(tempFilePath);
-        that.setData({
-          imagePath: tempFilePath,
-          // canvasHidden:true
-        });
-      },
-      fail: function (res) {
-        console.log(res);
-      }
-    });
-  },
-  //点击图片进行预览，长按保存分享图片
-  previewImg: function (e) {
-    var img = this.data.imagePath;
-    console.log(img);
-    wx.previewImage({
-      current: img, // 当前显示图片的http链接
-      urls: [img] // 需要预览的图片http链接列表
+  select_this: function (e) {
+    var current = e.currentTarget.dataset.current;
+    this.setData({
+      tabCurrent: current
     })
   },
-  formSubmit: function (e) {
+  goBuy: function () {
+   
+  },
+  close: function () {   
+  },
+  //生命周期函数
+  onLoad: function (event) {
+    this.setData({
+      ticketId: event.ticket_id
+    })
+  },
+  onShow: function (event) {
+    var td = this.data.ticketId;
     var that = this;
-    var url = e.detail.value.url;
-    that.setData({
-      maskHidden: false,
-    });
+    console.log(td);
     wx.showToast({
-      title: '生成中...',
+      title: '加载中',
       icon: 'loading',
-      duration: 2000
-    });
-    var st = setTimeout(function () {
-      wx.hideToast()
-      var size = that.setCanvasSize();
-      //绘制二维码
-      that.createQrCode(url, "mycanvas", size.w, size.h);
-      that.setData({
-        maskHidden: true
-      });
-      clearTimeout(st);
-    }, 2000)
+      duration: 1000,
+    }),
+      wx.request({
+        url: app.globalData.urlPath + 'detail',
+        data: {
+          tId: td
+        },
+        method: 'GET',
+        dataType: 'json',
+        responseType: 'text',
+        success: function (res) {
+          console.log(res);
+          that.setData({
+            details: res.data
+          })
+          console.log(res.data);
+        },
+      })
+  },
+  //预览图片
+  previewImage: function (e) {
+    var current = e.target.dataset.src;
 
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接  
+      urls: this.data.imgUrls // 需要预览的图片http链接列表  
+    })
+  },
+  // 收藏
+  addLike() {
+    this.setData({
+      isLike: !this.data.isLike
+    });
+    if (!this.data.isLike) {
+      wx.showToast({
+        title: '收藏成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+    else {
+      wx.showToast({
+        title: '取消收藏',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+  },
+  // 跳到购物车
+  addcar() {
+    this.setData({
+      addcar: !this.data.addcar
+    });
+    if (!this.data.addcar) {
+      wx.showToast({
+        title: '加入购物车成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+    else {
+      wx.showToast({
+        title: '取消加入购物车',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+  },
+  // 立即购买
+  immeBuy() {
+    if (app.globalData.flag == 1)//已经登陆，可以下单
+    {
+      var tId = this.data.ticketId;
+      wx.showModal({
+        title: '确定去下单？',
+        content: '',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '',
+        confirmText: '确认',
+        confirmColor: 'green',
+        success: function (res) {
+          if (res.confirm) {
+            wx.redirectTo({
+              url: '../pay/pay?tId=' + tId,
+            })
+          }
+        },
+      })
+    }
+    else//未登录必须先登陆
+    {
+      wx.showModal({
+        title: '请先授权登陆',
+        showCancel: true,
+        cancelText: '取消',
+        confirmText: '确定',
+        success: function (res) {
+          if (res.confirm == true) {
+            wx.navigateTo({
+              url: '../authorize/authorize'
+            })
+          }
+          else {
+            //用户按了拒绝按钮
+            wx.showModal({
+              title: '未授权登陆，请先授权',
+              content: '您拒绝授权，将不能使用小程序',
+              confirmText: '确定',
+              cancelText: '取消',
+              success: function (res) {
+                if (res.confirm) {//确定授权
+                  wx.navigateTo({
+                    url: '../authorize/authorize'
+                  })
+                } else if (res.cancel) {//拒绝授权
+                  wx.navigateTo({
+                    url: '../home/home'
+                  })
+                }
+              }
+            })
+          }
+        },
+      })
+    }
   }
 
 })

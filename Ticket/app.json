@@ -10,7 +10,12 @@
     "pages/test/test",
     "pages/pay/pay",
     "pages/order/order",
-    "pages/list/list"
+    "pages/list/list",
+    "pages/managerddress/managerddress",
+    "pages/newaddress/newaddress",
+    "pages/category/category",
+    "pages/collection/collection",
+    "pages/comment/comment"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -27,14 +32,14 @@
       {
         "text": "首页",
         "pagePath": "pages/home/home",
-        "iconPath": "resources/images/back_home.png",
-        "selectedIconPath": "resources/images/back_to_home.png"
+        "iconPath": "resources/images/unindex.png",
+        "selectedIconPath": "resources/images/index.png"
       },
       {
-        "text": "订单",
-        "pagePath": "pages/list/list",
-        "iconPath": "resources/images/edit_un.png",
-        "selectedIconPath": "resources/images/edit_in.png"
+        "text": "分类",
+        "pagePath": "pages/category/category",
+        "iconPath": "resources/images/uncata.png",
+        "selectedIconPath": "resources/images/cata.png"
       },
       {
         "text": "我的",

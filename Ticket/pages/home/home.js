@@ -57,7 +57,7 @@ Page( {
     wx.login({
       success: function(res) {
         wx.request({
-          url: 'http://localhost:8080/BiShe/is_login',
+          url: app.globalData.urlPath+'is_login',
           data: {
             'operFlag': "getOpenid",
              code:res.code
@@ -107,7 +107,7 @@ Page( {
     //初始化首面，从数据库获取初始数据
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/BiShe/image',
+      url: app.globalData.urlPath +'image',
       method: 'GET',
       dataType: 'json',
       responseType: 'text',

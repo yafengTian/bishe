@@ -1,21 +1,61 @@
-<view class="personalWrap">
-    <view class="personalMe" >
-        <image src="{{userHead}}" style="width:68px;height:68px;border:1px solid #ddd;float:left;margin:20rpx 20rpx;border-radius: 50%;"></image>
-        <view class="personalInfo">
-            <text>昵称:{{nickName}}</text>
-            <text>电话: {{userPhone}}</text>
-            <text style='color:blue;'>登陆状态: {{is_login}}</text>
-        </view>
+<!--pages/mine/mine.wxml-->
+<view>
+
+  <view class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" ></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+
+  <view class="separate"></view>
+
+  <view class="order" catchtap="toOrder">
+    <text class="myorder-text">我的订单</text>
+    <text class="myorderlook-text" catchtap='allOrders'>查看全部订单</text>
+    <image class="next-image" src= "../../resources/images/orders.png"></image>
+  </view>
+  <view class="line"></view>
+
+  <view class="navs">
+    <block wx:for-items="{{orderItems}}" wx:key="name">
+      <view class="nav-item" catchtap="toOrder" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+        <image src="{{item.imageurl}}" class="nav-image" />
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="separate"></view>
+  <view class="person-list">
+    <view class="list-item">
+      <image class="item-image" src= "../../resources/images/mysc.png"></image>
+      <text class="item-text" catchtap='show_collection'>我的收藏</text>
     </view>
-    <!-- 列表 -->
-    <view class="personalList">
-        <view class="iconfont icon-reserve"  bindtap="listFirst">我的订单</view>
-         <view class="iconfont icon-password" >密码修改</view>
-        <view class="iconfont icon-about" >关于易玩</view>
-        <view class="iconfont icon-feedback">意见反馈</view>
-        <view class="iconfont icon-edition" >版本号 v1.0.1</view>
+    <view class="person-line"></view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src= "../../resources/images/address.png"></image>
+      <text class="item-text" catchtap='manageraddress'>收货地址</text>
     </view>
-    <button type="default"  bindtap="defaultLogin" data-login="{{login}}" hover-class="other-button-hover"> {{operation}} </button>
+    <view class="person-line"></view>
+      <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src= "../../resources/images/comment.png"></image>
+      <text class="item-text">我的评价</text>
+    </view>
+    <view class="person-line"></view>
+      <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src= "../../resources/images/about.png"></image>
+      <text class="item-text">关于易玩</text>
+    </view>
+    <view class="person-line"></view>
+      <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src= "../../resources/images/fen.png"></image>
+      <text class="item-text">推广邀请</text>
+    </view>
+      <view class="person-line"></view>
+      <view class="person-line"></view>
+  </view>
+  <view class="separate"></view>
 </view>
-<import src="../../template/template.wxml"/>
-<template is="qrcode" />

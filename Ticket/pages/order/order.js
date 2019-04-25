@@ -11,7 +11,7 @@ Page({
   onLoad: function (options) {
     console.log(options);
     this.setData({
-      placeholder: app.globalData.openid +'+'+ options.number
+      placeholder: app.globalData.openid +'+'+ options.tId
     })
     // 页面初始化 options为页面跳转所带来的参数
     var size = this.setCanvasSize();//动态设置画布大小

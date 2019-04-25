@@ -78,7 +78,7 @@
 .sort-item{
     width:33%;
     height: 45px;
-    color: #545454;
+    color: #db3652;
     font-size:13px;
     text-align: center;
     padding-top:13px;
@@ -169,6 +169,7 @@
     vertical-align: middle;
     line-height: 1.25em;
     padding: 0 5px 0 10px;
+     font-size: 12px;
 }
 .goods-item .operating{
     position: relative;
@@ -213,6 +214,6 @@
     position: absolute;
 }
 .tips span{
-    color: #007aff;
+    color: #e6324a;
     padding-left: 2px;
 }

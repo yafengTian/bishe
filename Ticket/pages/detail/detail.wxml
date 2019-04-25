@@ -1,33 +1,108 @@
-<!-- banner -->
+<!--detail.wxml-->
+<view id="details">
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}">
     <swiper-item>
-      <image src="{{item}}" data-src="{{item}}" bindtap="previewImage"></image>
+      <image class='image' src="{{item}}" data-src="{{item}}" bindtap="previewImage"></image>
     </swiper-item>
   </block>
 </swiper>
-<scroll-view scroll-y="true">
   <view class="detail">
-  <view wx:for="{{details}}">
-  <text class="price">￥{{item.price}} {{item.descration}}</text>
-   <view class='line'></view>
-  <view class='center'>景区介绍</view>
-   <view class='line'></view>
-  <view class='content'>{{item.introducation}}</view>
+    <view class="product_top">
+    <view wx:for="{{details}}">
+      <view class="name_share flexRowBetween" style="align-items:center;">
+        <view class="product_name avoidOverflow" style="width:80%;">
+          {{item.descration}}
+        </view>
+        <view style="width:20%;text-align:right;">
+          <image src="../../resources/images/fen.png"></image>
+        </view>
+      </view>
+      <view class="price_sale flexRowBetween">
+        <view class="price">
+          ￥{{item.price}}.00元
+        </view>
+        <view class="sale">
+          销量{{item.saleCount}}笔
+        </view>
+        </view>
+      </view>
+    </view>
+    <view class="detail_comment flexRowBetween">
+      <view class="detail  {{tabCurrent == 0?'detail_select':''}}" data-current="0" bindtap="select_this">
+        详情
+      </view>
+      <view class="comment {{tabCurrent == 1?'detail_select':''}}" data-current="1" bindtap="select_this">
+        评价
+      </view>
+    </view>
+    <view class="detail_show">
+      <view wx:for="{{details}}">
+      <view id="detail" style="{{tabCurrent == 0?'display:block':'display:none'}}">
+        <image class='image' src="{{item.image}}"></image>
+      </view>
+      <view class='introduction' style="{{tabCurrent==1?'display:none':'display:block'}}">景区介绍</view>
+      <view class='line'></view>
+      <view class='intro' style="{{tabCurrent==1?'display:none':'display:block'}}">
+      {{item.introducation}}
+      </view>
+      </view>
+      <view id="comment" style="{{tabCurrent == 1?'display:block':'display:none'}}">
+        <view class="good_com flexRowBetween">
+          <view class="comment_number">
+            评价({{number}})
+          </view>
+          <view class="good_percent">
+            <text>好评率</text>
+            <text class="percent">99%</text>
+          </view>
+        </view>
+        <view wx:for="{{comments}}">
+        <view class="comment_list ">
+          <view class="flexRowBetween" style="align-items:center;">
+            <view class="comment_user" style="display:flex;align-items:center;">
+              <view class="user_img">
+                <image src="{{item.avatarUrl}}"></image>
+              </view>
+              <view class="txts" style="height:58rpx;">
+                <view class="text1">{{item.nickName}}</view>
+                <view class="text2">{{item.time}}</view>
+              </view>
+            </view>
+            <view wx:for="{{item.start}}">
+            <view class="star flexRowBetween">
+              <image src="../../resources/images/star.png"></image>
+            </view>
+            </view>
+          </view>
+          <view class="comment_cont">
+            {{item.content}}
+          </view>
+        </view>  
+        </view>  
+      </view>
+    </view>
   </view>
+  <view class="{{isShow?'mask':''}}"></view>
+
+</view>
+<view id="buy">
+  <view class="buy_click">
+    <view class="consult">
+      <image src="../../resources/images/kefu.png"></image>
+      <view class="text1">客服</view>
+    </view>
+    <view class="consult collect">
+      <image catchtap='addLike' src="{{isLike?'../../resources/images/unsc.png':'../../resources/images/sc.png'}}"></image>
+      <view class="text1">收藏</view>
+    </view>
+    <view class="go_buy flexRowBetween" bindtap="goBuy">
+      <view class="shoppingCart">
+        加入购物车
+      </view>
+      <view class="go_pay" catchtap='immeBuy'>
+        立即购买
+      </view>
+    </view>
   </view>
-  <view class='line'></view>
-  <view class='center'>景区一角</view>
-  <view class='line'></view>
-  <block wx:for-items="{{detailImg}}" wx:key="name">
-    <image class="image_detail" src="{{item}}" />
-  </block>
-</scroll-view>
-<!-- 底部悬浮栏 -->
-<view class="detail-nav">
-  <image bindtap="toCar" src="../../resources/images/ic_listing_selected.png" />
-  <view class="line_nav"></view>
-  <image bindtap="addLike" src="{{isLike?'../../resources/images/unshoucang.png':'../../resources/images/shoucang.png'}}" />
-  <button class="button-green" bindtap="mylist" formType="submit">我的订单</button>
-  <button class="button-red" bindtap="immeBuy" formType="submit">去下单</button>
 </view>

@@ -30,7 +30,7 @@ Page({
     login: function () {
       var that = this;
       wx.request({
-        url: 'http://localhost:8080/BiShe/login?account=' + this.data.phone +'&password='+this.data.password,
+       url: app.globalData.urlPath +'login?account=' + this.data.phone +'&password='+this.data.password,
         data: {
           account:this.data.phone,
           password:this.data.password
